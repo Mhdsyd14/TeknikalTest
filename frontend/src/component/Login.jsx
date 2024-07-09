@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useCookies } from "react-cookie";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +8,6 @@ const Login = () => {
     password: "",
   });
 
-  const [cookies, setCookie] = useCookies(["token"]);
   const location = useLocation();
   const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(
@@ -34,8 +32,8 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      // Simpan token ke dalam cookies
-      setCookie("token", response.data.token, { path: "/" });
+      // Simpan token ke dalam session storage
+      sessionStorage.setItem("token", response.data.token);
 
       console.log("Login successful:", response.data);
       navigate("/");
