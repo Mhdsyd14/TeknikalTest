@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -7,7 +9,9 @@ const Login = () => {
     password: "",
   });
 
+  const [cookies, setCookie] = useCookies(["token"]);
   const location = useLocation();
+  const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(
     location.state?.message ? true : false
   );
@@ -21,10 +25,24 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send data to the server
-    console.log(formData);
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/auth/login",
+        formData,
+        { withCredentials: true }
+      );
+
+      // Simpan token ke dalam cookies
+      setCookie("token", response.data.token, { path: "/" });
+
+      console.log("Login successful:", response.data);
+      navigate("/");
+    } catch (error) {
+      console.error("Error logging in:", error);
+      setShowAlert(true);
+    }
   };
 
   return (
