@@ -9,18 +9,21 @@ import Orders from "./pages/Orders/Orders";
 import EditOrder from "./pages/Orders/EditOrder";
 import Register from "./component/Register";
 import Login from "./component/Login";
+import Layout from "./component/Layout";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Profile />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<EditProduct />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/categories/:id" element={<EditCategories />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/orders/:id" element={<EditOrder />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Profile />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/:id" element={<EditProduct />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="categories/:id" element={<EditCategories />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="orders/:id" element={<EditOrder />} />
+        </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
