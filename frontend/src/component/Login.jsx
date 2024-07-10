@@ -14,6 +14,7 @@ const Login = () => {
     location.state?.message ? true : false
   );
   const successMessage = location.state?.message || "";
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,13 +33,13 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      // Simpan token ke dalam session storage
       sessionStorage.setItem("token", response.data.token);
 
       console.log("Login successful:", response.data);
       navigate("/");
     } catch (error) {
       console.error("Error logging in:", error);
+      setErrorMessage("Email or password is incorrect");
       setShowAlert(true);
     }
   };
@@ -47,14 +48,24 @@ const Login = () => {
     <div className="container mx-auto mt-8 flex justify-center">
       <div className="w-full max-w-md">
         {showAlert && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
-            <span className="block sm:inline">{successMessage}</span>
+          <div
+            className={`bg-${
+              errorMessage ? "red" : "green"
+            }-100 border border-${errorMessage ? "red" : "green"}-400 text-${
+              errorMessage ? "red" : "green"
+            }-700 px-4 py-3 rounded relative mb-4`}
+          >
+            <span className="block sm:inline">
+              {errorMessage || successMessage}
+            </span>
             <span
               className="absolute top-0 bottom-0 right-0 px-4 py-3"
               onClick={() => setShowAlert(false)}
             >
               <svg
-                className="fill-current h-6 w-6 text-green-500"
+                className={`fill-current h-6 w-6 text-${
+                  errorMessage ? "red" : "green"
+                }-500`}
                 role="button"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"

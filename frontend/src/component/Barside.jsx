@@ -11,7 +11,6 @@ const Barside = () => {
     try {
       const token = sessionStorage.getItem("token");
 
-      // Kirim permintaan logout ke server dengan menyertakan credentials
       await axios.post(
         "http://localhost:3000/auth/logout",
         {},
@@ -19,15 +18,13 @@ const Barside = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          withCredentials: true, // Sertakan credentials untuk menghapus cookies di server
+          withCredentials: true,
         }
       );
 
-      // Hapus token dari session storage dan cookies
       sessionStorage.removeItem("token");
       removeCookie("token", { path: "/" });
 
-      // Arahkan ke halaman login
       navigate("/login");
     } catch (error) {
       console.error("Error logging out:", error);

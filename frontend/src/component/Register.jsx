@@ -11,6 +11,7 @@ const Register = () => {
     address: "",
   });
 
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,10 +20,37 @@ const Register = () => {
       ...formData,
       [name]: value,
     });
+
+    // Clear error message when user starts typing
+    setErrors({
+      ...errors,
+      [name]: "",
+    });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = "Name is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Email is invalid";
+    if (!formData.password) newErrors.password = "Password is required";
+    else if (formData.password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
+    if (!formData.phone_number)
+      newErrors.phone_number = "Phone number is required";
+    if (!formData.address) newErrors.address = "Address is required";
+    return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:3000/auth/register",
@@ -49,7 +77,9 @@ const Register = () => {
                 Name
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.name && "border-red-500"
+                }`}
                 id="name"
                 name="name"
                 type="text"
@@ -57,6 +87,9 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Name"
               />
+              {errors.name && (
+                <p className="text-red-500 text-xs italic">{errors.name}</p>
+              )}
             </div>
             <div className="mb-4">
               <label
@@ -66,7 +99,9 @@ const Register = () => {
                 Email
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.email && "border-red-500"
+                }`}
                 id="email"
                 name="email"
                 type="email"
@@ -74,6 +109,9 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Email"
               />
+              {errors.email && (
+                <p className="text-red-500 text-xs italic">{errors.email}</p>
+              )}
             </div>
             <div className="mb-4">
               <label
@@ -83,7 +121,9 @@ const Register = () => {
                 Password
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.password && "border-red-500"
+                }`}
                 id="password"
                 name="password"
                 type="password"
@@ -91,6 +131,9 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Password"
               />
+              {errors.password && (
+                <p className="text-red-500 text-xs italic">{errors.password}</p>
+              )}
             </div>
             <div className="mb-4">
               <label
@@ -100,7 +143,9 @@ const Register = () => {
                 Phone Number
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.phone_number && "border-red-500"
+                }`}
                 id="phone_number"
                 name="phone_number"
                 type="text"
@@ -108,6 +153,11 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Phone Number"
               />
+              {errors.phone_number && (
+                <p className="text-red-500 text-xs italic">
+                  {errors.phone_number}
+                </p>
+              )}
             </div>
             <div className="mb-4">
               <label
@@ -117,7 +167,9 @@ const Register = () => {
                 Address
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.address && "border-red-500"
+                }`}
                 id="address"
                 name="address"
                 type="text"
@@ -125,6 +177,9 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Address"
               />
+              {errors.address && (
+                <p className="text-red-500 text-xs italic">{errors.address}</p>
+              )}
             </div>
             <div className="flex items-center justify-between">
               <button
