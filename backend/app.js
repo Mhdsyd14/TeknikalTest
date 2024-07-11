@@ -12,6 +12,7 @@ const userRouter = require("./app/user/router");
 const categoryRouter = require("./app/categories/router");
 const productRouter = require("./app/product/router");
 const orderRouter = require("./app/orders/router");
+const dummyRouter = require("./app/Dummy/router");
 
 connectDB();
 
@@ -31,5 +32,6 @@ app.use("/auth", userRouter);
 app.use("/api", categoryRouter);
 app.use("/api", productRouter);
 app.use("/api", orderRouter);
+app.use("/api", dummyRouter);
 
 module.exports = app;
