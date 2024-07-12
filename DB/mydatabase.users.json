@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "668a0e39274223ac453b6ec7"
+  },
+  "name": "Irsyad",
+  "password": "$2a$10$8fq9aTTGC.4Xd2lcOqBzo.B/aIUzlY6ej/Qux3wtbXVNA8UEAfRNy",
+  "email": "irsyad@gmail.com",
+  "phone_number": "1234567890",
+  "address": "mampang prapatan",
+  "created_at": {
+    "$date": "2024-07-07T03:40:41.313Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-07T03:40:41.496Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668fe116ef7ad45143f45006"
+  },
+  "name": "John Doe",
+  "password": "$2a$10$urkzp.oRsIuLRXcQdeANyO6VJ1Tab5OMzor7L5vAc8nLsJDyee99W",
+  "email": "john.doe@example.com",
+  "phone_number": "1234567890",
+  "address": "123 Main St, Anytown, USA",
+  "created_at": {
+    "$date": "2024-07-11T13:41:42.380Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-11T13:41:42.490Z"
+  },
+  "__v": 0
+}]

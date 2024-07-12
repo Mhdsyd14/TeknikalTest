@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "668ddadc99902f902667ecde"
+  },
+  "category": {
+    "$oid": "668ddacb99902f902667ecd4"
+  },
+  "code": 9899,
+  "name": "Koko berubah",
+  "price": 450000,
+  "created_at": {
+    "$date": "2024-07-10T00:50:36.333Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-10T00:51:40.388Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668fe0c77f0159f6c08328df"
+  },
+  "category": {
+    "$oid": "668fdff713bb118358156f0f"
+  },
+  "code": 123456,
+  "name": "Dummy Product",
+  "price": 699,
+  "created_at": {
+    "$date": "2024-07-11T13:40:23.240Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-11T13:40:23.240Z"
+  },
+  "__v": 0
+}]

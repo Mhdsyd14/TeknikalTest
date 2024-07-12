@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "668ddacb99902f902667ecd4"
+  },
+  "code": 4018,
+  "name": "Product",
+  "created_at": {
+    "$date": "2024-07-10T00:50:19.609Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-10T00:51:22.034Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668fdff713bb118358156f0f"
+  },
+  "code": 209,
+  "name": "Dummy Category",
+  "created_at": {
+    "$date": "2024-07-11T13:36:55.606Z"
+  },
+  "updated_at": {
+    "$date": "2024-07-11T13:36:55.606Z"
+  },
+  "__v": 0
+}]
